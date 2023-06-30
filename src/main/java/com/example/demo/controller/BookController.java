@@ -18,7 +18,6 @@ import com.example.demo.model.Book;
 import com.example.demo.service.BookService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/book")
 public class BookController {
 
