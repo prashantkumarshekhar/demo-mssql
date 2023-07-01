@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.User;
@@ -13,6 +14,10 @@ public class RegistrationService {
     private UserRepository userRepository;
 	
 	public User addUser(User user) {
+		
+		BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
+		String encryptedPassword=bcrypt.encode(user.getPassword());
+		user.setPassword(encryptedPassword);//save encrypted password rather than plain text
         return userRepository.save(user);
     }
 
