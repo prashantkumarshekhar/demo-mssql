@@ -18,6 +18,10 @@ public class RegistrationService {
 		BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
 		String encryptedPassword=bcrypt.encode(user.getPassword());
 		user.setPassword(encryptedPassword);//save encrypted password rather than plain text
+		
+		//set default role
+		user.setRole("user");
+		
         return userRepository.save(user);
     }
 

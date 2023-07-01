@@ -13,7 +13,7 @@ public class LoginService {
 	@Autowired
     private UserRepository userRepository;
 	
-	public Boolean isValidUser(String username,String password) {
+	public User isValidUser(String username,String password) {
         User dbUser=userRepository.findByUsername(username);
         
         //adding BCrypt for password encoding(salting+hashing)
@@ -30,11 +30,11 @@ public class LoginService {
       //checks if encrypted password is same as stored encrypted password in db
         if(bcrypt.matches(password, dbUser.getPassword())) 
         {
-        	return true;
+        	return dbUser;
         }
         else
         {
-        	return false;
+        	return null;
         }
         
     }
